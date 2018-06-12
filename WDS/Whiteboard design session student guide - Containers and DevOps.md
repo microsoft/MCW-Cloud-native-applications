@@ -1,16 +1,10 @@
-![](images/HeaderPic.png "Microsoft Cloud Workshops")
+!["Microsoft Cloud Workshops"](images/HeaderPic.png)
 
-<div class="MCWHeader1">
 Containers and DevOps
-</div>
 
-<div class="MCWHeader2">
 Whiteboard design session student guide
-</div>
 
-<div class="MCWHeader3">
-March 2018
-</div>
+June 2018
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
 
@@ -49,7 +43,7 @@ This hands-on lab is designed to guide you through the process of building and d
 
     -   Azure Container Registry
 
-    -   Azure Container Services (AKS)
+    -   Azure Kubernetes Service (AKS)
 
 -   Setting up an environment to do the following:
 
@@ -57,7 +51,7 @@ This hands-on lab is designed to guide you through the process of building and d
 
     -   Connect to Azure Container Registry
 
-    -   Connect to an Azure Container Services (AKS) cluster
+    -   Connect to an Azure Kubernetes Service (AKS) cluster
 
 -   Perform the following actions:
 
@@ -158,13 +152,11 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
     -   Be affordable, if possible with no additional licensing
 
-4.  Continue to use its managed MongoDB cluster for data storage.
+4.  Migrate data from MongoDB hosted by mLab to CosmosDB in order to take advantage of Azure native features, with the least change possible to the application code.
 
 5.  Continue to use Git repositories for source control and desires this to be integrated into a CICD workflow.
 
-6.  As there are team members who already have familiarity with Chef they are hoping to use this with the container solution.
-
-7.  Prefer a complete suite of operational management tools with:
+6.  Prefer a complete suite of operational management tools with:
 
     -   UI for manual deployment and management during development and initial POC work
 
@@ -174,41 +166,29 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
     -   Health monitoring and alerts, visualizing status
 
-8.  Complete an implementation of the proposed solution for a single tenant to train the team and perfect the process.
+7.  Complete an implementation of the proposed solution for a single tenant to train the team and perfect the process.
   
 ### Customer objections 
 
 1.  With so many platforms and tools for Docker and container orchestration, how should we choose an option for Azure?
 
-2.  What is the simplest way to move containers on Azure, based on our PaaS experience, while at the same time considering our scale and growth requirements?
+2.  What is the simplest way to move to containers on Azure, based on our PaaS experience, while at the same time considering our scale and growth requirements?
 
 ### Infographic for common scenarios
 
 **Kubernetes Architecture**
 
-*NOTE: this diagram is an illustration of the Kubernetes topology, however, given Azure Container Services (AKS) is managed, the details of the underlying Kubernetes deployment are not surfaced -- nor do customers have to manage it.*
+*NOTE: this diagram is an illustration of the Kubernetes topology, however, given Azure Kubernetes Services (AKS) is managed, the details of the underlying Kubernetes deployment are not surfaced -- nor do customers have to manage it.*
 
-![Azure Container Service configured to use Kubernetes.](images/Whiteboarddesignsessiontrainerguide-ContainersandDevOpsimages/media/image2.png)
-
-<https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-intro-kubernetes>
+![Azure Kubernetes Service configured to use Kubernetes.](images/Whiteboarddesignsessiontrainerguide-ContainersandDevOpsimages/media/image2.png)
 
 <https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes>
 
-**Automating Azure VM deployments with chef**
+**CICD to Azure Kubernetes Service with VSTS**
 
-Chef has three main architectural components: Chef Server, Chef Client (node), and Chef Workstation.
+![VSTS DevOps workflow with Azure Kubernetes Service](https://almvm.azurewebsites.net/labs/vstsextend/kubernetes/images/vstsaksdevops.png)
 
--   The Chef Server is our management point and there are two options for the Chef Server: a hosted solution or an on-premises solution.
-
--   The Chef Client (node) is the agent that sits on the servers you are managing. In Azure, your server nodes will all be running this agent so they can be controlled.
-
--   The Chef Workstation is our admin workstation where we create our policies and execute our management commands. We run the knife command from the Chef Workstation to manage our infrastructure.
-
--   There is also the concept of "cookbooks" and "recipes." These are effectively the policies we define and apply to our servers. These assets are typically stored with your infrastructure source control repository for version control.
-
-![Automating Azure virtual machine deployments with Chef](images/Whiteboarddesignsessiontrainerguide-ContainersandDevOpsimages/media/image3.png)
-
-<https://azure.microsoft.com/en-us/blog/automating-azure-virtual-machine-deployment-with-chef/>
+<https://almvm.azurewebsites.net/labs/vstsextend/kubernetes/>
 
 ## Step 2: Design a proof of concept solution
 
@@ -232,17 +212,17 @@ Directions: With all participants at your table, respond to the following questi
 
 2.  Without getting into the details (the following sections will address the particular details), diagram your initial vision of the container platform, the containers that should be deployed (for a single tenant), and the data tier.
 
-    *Choosing a container platform on Azure*
+*Choosing a container platform on Azure*
 
 1.  List the potential platform choices for deploying containers to Azure.
 
 2.  Which would you recommend and why?
 
-3.  Describe how the customer can provision their Azure Container Services (AKS) environment to get their POC started.
+3.  Describe how the customer can provision their Azure Kubernetes Service (AKS) environment to get their POC started.
 
-    *Containers, discovery, and load balancing*
+*Containers, discovery, and load balancing*
 
-1.  Describe the high-level manual steps developers will follow for building images and running containers on Azure Container Services (AKS) as they build their POC. Include the following components in the summary:
+1.  Describe the high-level manual steps developers will follow for building images and running containers on Azure Kubernetes Service (AKS) as they build their POC. Include the following components in the summary:
 
     -   The Git repository containing their source
 
@@ -254,17 +234,17 @@ Directions: With all participants at your table, respond to the following questi
 
 2.  What options does the customer have for a Docker image registry, and what would you recommend?
 
-3.  How will the customer configure web site containers so that they are reachable publicly at port 80/443 from Azure Container Services (AKS)?
+3.  How will the customer configure web site containers so that they are reachable publicly at port 80/443 from Azure Kubernetes Service (AKS)?
 
-4.  Explain how Azure Container Services (AKS) can route requests to multiple web site containers hosted on the same node at port 80/443.
+4.  Explain how Azure Kubernetes Service (AKS) can route requests to multiple web site containers hosted on the same node at port 80/443.
 
-    *Scalability considerations*
+*Scalability considerations*
 
-1.  Explain to the customer how Azure Container Services (AKS) and their preconfigured Scale Sets support cluster auto-scaling.
+1.  Explain to the customer how Azure Kubernetes Service (AKS) and their preconfigured Scale Sets support cluster auto-scaling.
 
-    *Automating DevOps workflows*
+*Automating DevOps workflows*
 
-1.  Describe how Chef can help the customer automate their continuous integration and deployment workflows and the Azure Container Services (AKS) infrastructure.
+1.  Describe how VSTS can help the customer automate their continuous integration and deployment workflows and the Azure Kubernetes Service (AKS) infrastructure.
 
 **Prepare**
 
@@ -306,9 +286,8 @@ Time frame: 15 minutes
 |    |            |
 |----------|:-------------:|
 | **Description** | **Links** |
-| Azure Container Services (AKS) | <https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes/> |
+| Azure Kubernetes Services (AKS) | <https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes/> |
 | Docker Enterprise Edition (Docker EE) | <https://docs.docker.com/enterprise/> |
 | DC/OS | <https://docs.mesosphere.com/1.9/overview/> |
 | Kubernetes | <https://kubernetes.io/docs/home/> |
-| Chef Automate | <https://docs.chef.io/workflow.html> |
-| Chef Provisioning for Docker | <https://docs.chef.io/provisioning.html> |
+| VSTS Pipelines | <https://docs.microsoft.com/en-us/vsts/pipelines>
