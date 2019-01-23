@@ -371,27 +371,33 @@ In this task, you will update the packages and install Docker engine.
     ``` bash
     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
     ```
-5. Add NodeJs PPA to use NodeJS LTS release and Update the Ubuntu packages and install Docker engine, node.js and the node package manager in a single step by typing the following in a single line command. When asked if you would like to proceed, respond by typing "y" and pressing enter.
+5. Add NodeJs PPA to use NodeJS LTS release and Update the Ubuntu packages and install Docker engine, node.js and the node package manager. Type the following commands. When asked if you would like to proceed, respond by typing "y" and pressing enter.
 
     ``` bash
     sudo apt-get install curl python-software-properties
     curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
     sudo apt-get update && sudo apt install docker-ce nodejs npm mongodb-clients
     ```
-6. Now, upgrade the Ubuntu packages to the latest version by typing the following in a single line command. When asked if you would like to proceed, respond by typing "y" and pressing enter.
+    
+5. Install Docker.
+    ``` bash
+    sudo apt install docker.io
+    ```
+    
+7. Now, upgrade the Ubuntu packages to the latest version by typing the following in a single line command. When asked if you would like to proceed, respond by typing "y" and pressing enter.
 
     ``` bash
     sudo apt-get upgrade
     ```
 
-7. Install `docker-compose`
+8. Install `docker-compose`
 
     ```bash
     sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
     sudo chmod +x /usr/local/bin/docker-compose
     ```
 
-8. When the command has completed, check the Docker version installed by executing this command. The output may look something like that shown in the following screen shot. Note that the server version is not shown yet, because you didn't run the command with elevated privileges (to be addressed shortly).
+9. When the command has completed, check the Docker version installed by executing this command. The output may look something like that shown in the following screen shot. Note that the server version is not shown yet, because you didn't run the command with elevated privileges (to be addressed shortly).
 
     ``` bash
     docker version
@@ -399,7 +405,7 @@ In this task, you will update the packages and install Docker engine.
 
     ![In this screenshot of a Command Prompt window, docker version has been typed and run at the command prompt. Docker version information appears in the window.](media/b4-image28.png)
 
-9. You may check the versions of node.js and npm as well, just for information purposes, using these commands:
+10. You may check the versions of node.js and npm as well, just for information purposes, using these commands:
 
     ``` bash
     nodejs --version
@@ -407,27 +413,27 @@ In this task, you will update the packages and install Docker engine.
     npm -version
     ```
 
-10. Install `bower`
+11. Install `bower`
 
     ```bash
     sudo npm install -g bower
     sudo ln -s /usr/bin/nodejs /usr/bin/node
     ```
 
-11. Add your user to the Docker group so that you do not have to elevate privileges with sudo for every command. You can ignore any errors you see in the output.
+12. Add your user to the Docker group so that you do not have to elevate privileges with sudo for every command. You can ignore any errors you see in the output.
     ``` bash
     sudo usermod -aG docker $USER
     ```
 
     ![In this screenshot of a Command Prompt window, sudo usermod -aG docker \$USER has been typed and run at the command prompt. Errors appear in the window.](media/b4-image29.png)
 
-12. In order for the user permission changes to take effect, exit the SSH session by typing 'exit', then press \<Enter\>. Repeat the commands in Task 6: Connect securely to the build agent from step 4 to establish the SSH session again.
+13. In order for the user permission changes to take effect, exit the SSH session by typing 'exit', then press \<Enter\>. Repeat the commands in Task 6: Connect securely to the build agent from step 4 to establish the SSH session again.
 
-13. Run the Docker version command again, and note the output now shows the server version as well.
+14. Run the Docker version command again, and note the output now shows the server version as well.
 
     ![In this screenshot of a Command Prompt window, docker version has been typed and run at the command prompt. Docker version information appears in the window, in addition to server version information.](media/b4-image30.png)
 
-14. Run a few Docker commands:
+15. Run a few Docker commands:
 
     -   One to see if there are any containers presently running.
     ``` bash
@@ -439,7 +445,7 @@ In this task, you will update the packages and install Docker engine.
     docker container ls -a
     ```
 
-15. In both cases, you will have an empty list but no errors running the command. Your build agent is ready with Docker engine running properly.
+16. In both cases, you will have an empty list but no errors running the command. Your build agent is ready with Docker engine running properly.
 
     ![In this screenshot of a Command Prompt window, docker container ls has been typed and run at the command prompt, as has the docker container ls -a command.](media/b4-image31.png)
 
