@@ -698,7 +698,7 @@ FabMedical has provided starter files for you. They have taken a copy of one of 
         git config --global user.name "Your Name"
         ```
     
-    * Tell git CLI to cache your credentials so that you don't have to keep re-typing them.
+    * Configure git CLI to cache credentials.
 
         ```bash
         git config --global credential.helper cache
@@ -776,6 +776,12 @@ FabMedical has provided starter files for you. They have taken a copy of one of 
       For example: modify the repository url "https://fabmedical-sol@dev.azure.com/fabmedical-sol/fabmedical/_git/content-web"
       as "https://dev.azure.com/fabmedical-sol/fabmedical/_git/content-web"
 
+    * Configure git CLI to cache credentials (now on the build agent).
+
+        ```bash
+        git config --global credential.helper cache
+        ```
+
     * Use the repository url to clone the content-web code to your build agent machine.
 
         ```bash
@@ -785,6 +791,15 @@ FabMedical has provided starter files for you. They have taken a copy of one of 
     * In your browser, switch to the "content-api" repository and select "Clone" to see and copy the repository url and update the URL by removing some characters as you did earlier for content-web repository.
 
     * Use the repository url and `git clone` to copy the content-api code to your build agent.
+
+    > **TIP:** Instead of copying the Clone URL each time, you can repeat the same clone command but change
+    > the last part of the url, e.g. 
+    > 
+    > `git clone https://dev.azure.com/fabmedical-sol/fabmedical/_git/content-web`
+    >
+    > `git clone https://dev.azure.com/fabmedical-sol/fabmedical/_git/content-init`
+    >
+    > `git clone https://dev.azure.com/fabmedical-sol/fabmedical/_git/content-api`
 
     * In your browser, switch to the "content-init" repository and select "Clone" to see and copy the repository url and then update the url by removing some characters as you did earlier for other repositories.
 
