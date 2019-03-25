@@ -614,7 +614,7 @@ In later exercises, you will need the Kubernetes CLI (kubectl) to deploy to your
     ``` bash
     az login
 
-    sudo az acs kubernetes install-cli --install-location /usr/local/bin/kubectl
+    sudo az aks install-cli --install-location /usr/local/bin/kubectl
     ```
 
 ### Task 13: Download the FabMedical starter files
@@ -644,6 +644,7 @@ FabMedical has provided starter files for you. They have taken a copy of one of 
     ```bash
     cd FabMedical
 
+    # on Mac bash you may need to type `ls`
     ll
     ```
 
@@ -693,16 +694,16 @@ FabMedical has provided starter files for you. They have taken a copy of one of 
     * Using your WSL window, set your username and email which are used in Azure DevOps for Git Commits.
 
         ```bash
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
-        ```
-        For example:
-
-        ```bash
-            git config --global user.email "you@example.onmicrosoft.com"
-            git config --global user.name "you@example.onmicrosoft.com"
+        git config --global user.email "you@example.com"
+        git config --global user.name "Your Name"
         ```
     
+    * Tell git CLI to cache your credentials so that you don't have to keep re-typing them.
+
+        ```bash
+        git config --global credential.helper cache
+        ```
+
     * Using your WSL window, initialize a new git repository.
 
         ```bash
