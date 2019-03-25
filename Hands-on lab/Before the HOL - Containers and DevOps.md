@@ -1,49 +1,25 @@
 ![](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
 
-<div class="MCWHeader1">
-Containers and DevOps
-</div>
+# Containers and DevOps before the hands-on lab setup guide
 
-<div class="MCWHeader2">
-Before the hands-on lab setup guide
-</div>
-
-<div class="MCWHeader3">
-November 2018
-</div>
-
-
-Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
-
-Microsoft may have patents, patent applications, trademarks, copyrights, or other intellectual property rights covering subject matter in this document. Except as expressly provided in any written license agreement from Microsoft, the furnishing of this document does not give you any license to these patents, trademarks, copyrights, or other intellectual property.
-
-The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for the contents of any linked site or any link contained in a linked site, or any changes or updates to such sites. Microsoft is not responsible for webcasting or any other form of transmission received from any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement of Microsoft of the site or the products contained therein.
-
-© 2018 Microsoft Corporation. All rights reserved.
-
-**Contents**
+## Contents
 <!-- TOC -->
 
-- [Containers and DevOps before the hands-on lab setup guide](#containers-and-devops-before-the-hands-on-lab-setup-guide)
-    - [Requirements](#requirements)
-    - [Before the hands-on lab](#before-the-hands-on-lab)
-        - [Task 1: Resource Group](#task-1-resource-group)
-        - [Task 2: Create a Windows 10 Development VM](#task-2-create-a-windows-10-development-vm)
-        - [Task 3: Install WSL (Bash on Ubuntu on Windows)](#task-3-install-wsl-bash-on-ubuntu-on-windows)
-        - [Task 4: Create an SSH key](#task-4-create-an-ssh-key)
-        - [Task 5: Create a build agent VM](#task-5-create-a-build-agent-vm)
-        - [Task 6: Connect securely to the build agent](#task-6-connect-securely-to-the-build-agent)
-        - [Task 7: Complete the build agent setup](#task-7-complete-the-build-agent-setup)
-        - [Task 8: Create an Azure Container Registry](#task-8-create-an-azure-container-registry)
-        - [Task 9: Create a Service Principal](#task-9-create-a-service-principal)
-        - [Task 10: Create an Azure Kubernetes Service cluster](#task-10-create-an-azure-kubernetes-service-cluster)
-        - [Task 11: Install Azure CLI](#task-11-install-azure-cli)
-        - [Task 12: Install Kubernetes CLI](#task-12-install-kubernetes-cli)
-        - [Task 13: Download the FabMedical starter files](#task-13-download-the-fabmedical-starter-files)
+- [Task 1: Resource Group](#task-1-resource-group)
+- [Task 2: Create a Windows 10 Development VM](#task-2-create-a-windows-10-development-vm)
+- [Task 3: Install WSL (Bash on Ubuntu on Windows)](#task-3-install-wsl-bash-on-ubuntu-on-windows)
+- [Task 4: Create an SSH key](#task-4-create-an-ssh-key)
+- [Task 5: Create a build agent VM](#task-5-create-a-build-agent-vm)
+- [Task 6: Connect securely to the build agent](#task-6-connect-securely-to-the-build-agent)
+- [Task 7: Complete the build agent setup](#task-7-complete-the-build-agent-setup)
+- [Task 8: Create an Azure Container Registry](#task-8-create-an-azure-container-registry)
+- [Task 9: Create a Service Principal](#task-9-create-a-service-principal)
+- [Task 10: Create an Azure Kubernetes Service cluster](#task-10-create-an-azure-kubernetes-service-cluster)
+- [Task 11: Install Azure CLI](#task-11-install-azure-cli)
+- [Task 12: Install Kubernetes CLI](#task-12-install-kubernetes-cli)
+- [Task 13: Download the FabMedical starter files](#task-13-download-the-fabmedical-starter-files)
 
 <!-- /TOC -->
-
-# Containers and DevOps before the hands-on lab setup guide
 
 ## Requirements
 
@@ -808,3 +784,33 @@ FabMedical has provided starter files for you. They have taken a copy of one of 
 >**Note: Keep this WSL window open as your build agent SSH connection. You will later open new WSL sessions to other machines.**
 
 You should follow all steps provided *before* performing the Hands-on lab.
+
+```text
+Information in this document, including URL and other Internet Web site references, is subject to change 
+without notice. Unless otherwise noted, the example companies, organizations, products, domain names, 
+e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association 
+with any real company, organization, product, domain name, e-mail address, logo, person, place or event 
+is intended or should be inferred. Complying with all applicable copyright laws is the responsibility 
+of the user. Without limiting the rights under copyright, no part of this document may be reproduced, 
+stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, 
+mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written 
+permission of Microsoft Corporation.
+
+Microsoft may have patents, patent applications, trademarks, copyrights, or other intellectual property 
+rights covering subject matter in this document. Except as expressly provided in any written license 
+agreement from Microsoft, the furnishing of this document does not give you any license to these patents, 
+trademarks, copyrights, or other intellectual property.
+
+The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft 
+makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers 
+or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product 
+does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third 
+party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for 
+the contents of any linked site or any link contained in a linked site, or any changes or updates to 
+such sites. Microsoft is not responsible for webcasting or any other form of transmission received from 
+any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of 
+any link does not imply endorsement of Microsoft of the site or the products contained therein.
+
+© 2019 Microsoft Corporation. All rights reserved.
+
+```
