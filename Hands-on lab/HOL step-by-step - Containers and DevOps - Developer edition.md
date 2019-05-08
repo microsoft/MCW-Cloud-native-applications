@@ -755,7 +755,7 @@ In this task, you will configure the "web" container to communicate with the API
 
     ![Browser view of the web site.](media/Ex1-Task6.18.png)
 
-20. We stopped and removed our previous mongodb container; all the data contained in it has been removed.  Docker compose has created a new, empty mongodb instance that must be reinitialized.  If we care to persist our data between container instances, the docker has several mechanisms to do so. First we will update our compose file to persist mongodb data to a directory on the build agent.
+20. We stopped and removed our previous mongodb container; all the data contained in it has been removed.  Docker compose has created a new, empty mongodb instance that must be reinitialized.  If we care to persist our data between container instances,  Docker has several mechanisms to do so. First, we will update our compose file to persist mongodb data to a directory on the build agent.
 
     ```bash
     mkdir data
