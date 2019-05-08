@@ -825,30 +825,63 @@ In this task, you will configure the "web" container to communicate with the API
 
 ### Task 7: Push images to Azure Container Registry
 
-To run containers in a remote environment, you will typically push images to a Docker registry, where you can store and distribute images. Each service will have a repository that can be pushed to and pulled from with Docker commands. Azure Container Registry (ACR) is a managed private Docker registry service based on Docker Registry v2.
+To run containers in a remote environment, you will want to push images to a Docker registry, where you can store and distribute images. Each service will have a repository that can be pushed to and pulled from with Docker commands. Azure Container Registry (ACR) is a managed private Docker registry service based on Docker Registry v2.
 
 In this task, you will push images to your ACR account, version images with tagging, and setup continuous integration (CI) to build future versions of your containers and push them to ACR automatically.
 
-1. In the [Azure Portal](https://portal.azure.com/), navigate to the ACR you created in Before the hands-on lab.
+1. In the [Azure Portal](https://portal.azure.com/), open the cloud shell
 
-2. Select Access keys under Settings on the left-hand menu.
+     ![In this screenshot of the portal header, the cloud shell icon is highlighted](media/image64.png)
 
-    ![In this screenshot of the left-hand menu, Access keys is highlighted below Settings.](media/image64.png)
+2. With the cloud shell open, first get the name of the ACR instance you created in Before the hands-on lab.
 
-3. The Access keys blade displays the Login server, username, and password that will be required for the next step. Keep this handy as you perform actions on the build VM.
+   ```bash
+    az acr list --output table
+   ```
 
-    > **Note**: If the username and password do not appear, select Enable on the Admin user option.
+3. Locate the name of the ACR instance from the list returned, then set the ACR_NAME in the script below and execute it. This will create and assign a service principal access to push and pull images to the registry. Copy and paste returned the service principal id, password, and login server info to use in the next step.
 
-4. From the WSL session connected to your build VM, login to your ACR account by typing the following command. Follow the instructions to complete the login.
+    > **Hint**: if copying and pasting the commands, be sure to include the enclosing curly braces so it will be executed as a single block.
 
     ```bash
-    docker login [LOGINSERVER] -u [USERNAME] -p [PASSWORD]
+   {
+    # ACR_NAME: The name of your Azure Container Registry
+    # SERVICE_PRINCIPAL_NAME: Must be unique within your AD tenant
+
+    ACR_NAME=<the ACR name created in the Before hands-on lab>
+    SERVICE_PRINCIPAL_NAME=fabmedical-acr-service-principal
+
+    # Obtain the full registry ID for subsequent command args
+    ACR_REGISTRY_ID=$(az acr show --name $ACR_NAME --query id --output tsv)
+
+    SERVICE_PRINCIPAL=$(az ad sp create-for-rbac --name $SERVICE_PRINCIPAL_NAME --scopes $ACR_REGISTRY_ID --role acrpush --output JSON)
+    SP_PASSWD=$(echo $SERVICE_PRINCIPAL | jq .password)
+    SP_APP_ID=$(echo $SERVICE_PRINCIPAL | jq .appId)
+
+    echo "Service principal ID: $SP_APP_ID"
+    echo "Service principal password: $SP_PASSWD"
+    echo "Login server: $ACR_NAME.azurecr.io"
+    }
+    ```
+
+    > **Note**: Assigning a service principal is better practice than using the _Admin account__ option, which is really meant for testing purposes. Service principals allow role-based access to a registry, and you can assign multiple service principals to a registry.
+
+4. From the WSL session connected to your build VM, login to your ACR account.
+
+    Set the LOGINSERVER variable to the ACR server
+
+    ```bash
+    LOGINSERVER=[LOGINSERVER]
+    ```
+
+    ```bash
+    docker login $LOGINSERVER -u [SERVICE_PRINCIPAL_ID] -p [PASSWORD]
     ```
 
     For example:
 
     ```bash
-    docker login fabmedicalsoll.azurecr.io -u fabmedicalsoll -p +W/j=l+Fcze=n07SchxvGSlvsLRh/7ga
+    docker login fabmedicalsoll.azurecr.io -u 7c015cf1-9938-4f96-9999-008d44a515d6 -p 1943386e-ce6f-4fc1-9b95-b4ac33ec8f47
     ```
 
     ![In this screenshot of the WSL window, the following has been typed and run at the command prompt: docker login fabmedicalsoll.azurecr.io --u fabmedicalsoll --p +W/j=l+Fcze=n07SchxvGSlvsLRh/7ga](media/image65.png)
@@ -858,8 +891,8 @@ In this task, you will push images to your ACR account, version images with tagg
 5. Run the following commands to properly tag your images to match your ACR account name.
 
     ```bash
-    docker tag content-web [LOGINSERVER]/content-web
-    docker tag content-api [LOGINSERVER]/content-api
+    docker tag content-web $LOGINSERVER/content-web
+    docker tag content-api $LOGINSERVER/content-api
     ```
 
 6. List your docker images and look at the repository and tag. Note that the repository is prefixed with your ACR login server name, such as the sample shown in the screenshot below.
@@ -873,8 +906,8 @@ In this task, you will push images to your ACR account, version images with tagg
 7. Push the images to your ACR account with the following command:
 
     ```bash
-    docker push [LOGINSERVER]/content-web
-    docker push [LOGINSERVER]/content-api
+    docker push $LOGINSERVER/content-web
+    docker push $LOGINSERVER/content-api
     ```
 
     ![In this screenshot of the WSL window, an example of images being pushed to an ACR account results from typing and running the following at the command prompt: docker push \[LOGINSERVER\]/fabmedical/content-web.](media/image67.png)
@@ -890,8 +923,8 @@ In this task, you will push images to your ACR account, version images with tagg
 10. From WSL, assign the v1 tag to each image with the following commands. Then list the Docker images to note that there are now two entries for each image; showing the latest tag and the v1 tag. Also note that the image ID is the same for the two entries, as there is only one copy of the image.
 
     ```bash
-    docker tag [LOGINSERVER]/content-web:latest [LOGINSERVER]/content-web:v1
-    docker tag [LOGINSERVER]/content-api:latest [LOGINSERVER]/content-api:v1
+    docker tag $LOGINSERVER/content-web:latest $LOGINSERVER/content-web:v1
+    docker tag $LOGINSERVER/content-api:latest $LOGINSERVER/content-api:v1
     docker images
     ```
 
@@ -904,8 +937,8 @@ In this task, you will push images to your ACR account, version images with tagg
 12. Run the following commands to pull an image from the repository. Note that the default behavior is to pull images tagged with "latest." You can pull a specific version using the version tag. Also, note that since the images already exist on the build agent, nothing is downloaded.
 
     ```bash
-    docker pull [LOGINSERVER]/content-web
-    docker pull [LOGINSERVER]/content-web:v1
+    docker pull $LOGINSERVER/content-web
+    docker pull $LOGINSERVER/content-web:v1
     ```
 
 13. Next we will use Azure DevOps to automate the process for creating images and pushing to ACR. First, you need to add an Azure Service Principal to your Azure DevOps account. Login to your Azure DevOps account and click the Project settings gear icon to access your settings. Then select Service connections.
