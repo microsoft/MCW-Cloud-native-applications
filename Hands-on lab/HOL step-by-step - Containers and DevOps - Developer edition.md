@@ -864,7 +864,7 @@ In this task, you will push images to your ACR account, version images with tagg
     }
     ```
 
-    > **Note**: Assigning a service principal is better practice than using the _Admin account__ option, which is really meant for testing purposes. Service principals allow role-based access to a registry, and you can assign multiple service principals to a registry.
+    > **Note**: Assigning a service principal is better practice than using the _Admin account_ option, which is really meant for testing purposes. Service principals allow role-based access to a registry, and you can assign multiple service principals to a registry.
 
 4. From the WSL session connected to your build VM, Set the LOGINSERVER variable to the ACR.
 
