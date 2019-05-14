@@ -2494,7 +2494,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
       - host:   fabmedical-[SUFFIX]-ingress.[AZURE-REGION].cloudapp.azure.com
         http:
           paths:
-          - path: /
+          - path: /(.*)
             backend:
               serviceName: web
               servicePort: 80
