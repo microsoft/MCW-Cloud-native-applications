@@ -569,7 +569,7 @@ Azure Kubernetes Service (AKS) is the recommended platform for the following rea
 
     The following are a few natural options for image registries that could support Azure container deployments:
 
-    - Azure Container Registry is a natural fit with Azure deployments, and it integrates well with deployment options previously mentioned for Docker containers in Azure. This includes an integrated experience in the Azure portal to view the repositories, images, tags, and the contents of manifests associated with an image. Azure Container Registry itself is a free service. You are only charged for underlying infrastructure resources like Azure Storage block blobs used to store your images and data transfer.
+    - Azure Container Registry is a natural fit with Azure deployments, and it integrates well with deployment options previously mentioned for Docker containers in Azure. This includes an integrated experience in the Azure portal to view the repositories, images, tags, and the contents of manifests associated with an image.
 
     - For development, you can also consider a public Docker Hub account. As all images in the public Docker Hub repository are public; however, this is not typically viable for corporate assets.
 
