@@ -412,7 +412,7 @@ In this task, you will update the packages and install Docker engine.
 10. Install `bower`
 
     ```bash
-    npm install -g bower
+    sudo npm install -g bower
     sudo ln -s /usr/bin/nodejs /usr/bin/node
     ```
 
