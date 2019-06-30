@@ -422,6 +422,7 @@ In this task, you will create a new Dockerfile that will be used to run the API 
     ```bash
     cat Dockerfile
     ```
+    
 
 ### Task 4: Create Docker images
 
@@ -491,8 +492,26 @@ In this task, you will create Docker images for the application --- one for the 
     ```bash
     docker images
     ```
+    ![Three images are now visible in this screenshot of the WSL window: content-web, content-api, and node.](media/image60.png)  
+9. Navigate to the content-init folder and list the files. Note that this folder also has the same Dockerfile.
 
-    ![Three images are now visible in this screenshot of the WSL window: content-web, content-api, and node.](media/image60.png)
+    ```bash
+    cd ../content-init
+    ll
+    ```
+    
+10. Type the following command to create a Docker image for the web application.
+
+    ```bash
+    docker build -t content-init .
+    ```
+ 
+11. List the docker images to see the new content-init image: 
+
+    ```bash
+    docker images
+    ```
+
 
 ### Task 5: Run a containerized application
 
