@@ -297,7 +297,7 @@ In this task, you will create Docker images for the application --- one for the 
 
     - Tags the resulting image with the name content-api (-t)
 
-    - The final dot (".") indicates to use the Dockerfile in this current directory context. By default, this file is expected to have the name "Dockerfile" (case sensitive).
+    - The final dot (".") indicates to use the Dockerfile in this current directory context. By default, this file is expected to have the name "Dockerfile" (case sensitive). NOTE: If the content-api folder does not have a Dockerfile, you have not extracted the Infrastructure edition of the source.
 
     ```bash
     docker build -t content-api .
