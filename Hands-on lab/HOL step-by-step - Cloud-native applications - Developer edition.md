@@ -1685,7 +1685,7 @@ In this task, you will use Azure DevOps to automate the process for deploying th
 
 5. Now return to the pipeline editor to create a deployment stage. Paste the following into the pipeline editor:
 
-   > **Note**: Be careful to check your indenting when pasting. The `stage` node should be indented with 0 spaces, and line up with the `stage` node for the `Build` stage.
+   > **Note**: Be careful to check your indenting when pasting. The `stage` node should be indented with 0 spaces, and line up with the `stage` node for the `Build` stage. You can use Visual Studio Code with with [Azure Pipelines extension](https://marketplace.visualstudio.com/items?itemName=ms-azure-devops.azure-pipelines) which provides syntax highlighting and autocompletion for Azure Pipelines YAML. 
 
    ```yaml
    - stage:
