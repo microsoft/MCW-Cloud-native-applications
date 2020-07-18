@@ -11,7 +11,7 @@
   "dependencies": {
     "async": "^2.6.3",
     "chalk": "^2.4.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mongoose": "^5.7.1"
   }
 }
