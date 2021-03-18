@@ -27,32 +27,22 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 <!-- TOC -->
 - [Cloud-native applications - Developer edition hands-on lab step-by-step](#cloud-native-applications---developer-edition-hands-on-lab-step-by-step)
   - [Abstract and learning objectives](#abstract-and-learning-objectives)
+  - [Prerequisites](#prerequisites)
   - [Overview](#overview)
   - [Solution architecture](#solution-architecture)
   - [Requirements](#requirements)
-  - [Exercise 1: Create and run a Docker application](#exercise-1-create-and-run-a-docker-application)
-    - [Task 1: Test the application](#task-1-test-the-application)
-    - [Task 2: Browsing to the web application](#task-2-browsing-to-the-web-application)
-    - [Task 3: Create a Dockerfile](#task-3-create-a-dockerfile)
-    - [Task 4: Create Docker images](#task-4-create-docker-images)
-    - [Task 5: Run a containerized application](#task-5-run-a-containerized-application)
-    - [Task 6: Setup environment variables](#task-6-setup-environment-variables)
-    - [Task 7: Push images to Azure Container Registry](#task-7-push-images-to-azure-container-registry)
-    - [Task 8: Setup CI Pipeline to Push Images](#task-8-setup-ci-pipeline-to-push-images)
   - [Exercise 2: Migrate MongoDB to Cosmos DB using Azure Database Migration Service](#exercise-2-migrate-mongodb-to-cosmos-db-using-azure-database-migration-service)
     - [Task 1: Enable Microsoft.DataMigration resource provider](#task-1-enable-microsoftdatamigration-resource-provider)
     - [Task 2: Provision Azure Database Migration Service](#task-2-provision-azure-database-migration-service)
     - [Task 3: Migrate data to Azure Cosmos DB](#task-3-migrate-data-to-azure-cosmos-db)
   - [Exercise 3: Deploy the solution to Azure Kubernetes Service](#exercise-3-deploy-the-solution-to-azure-kubernetes-service)
     - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#task-1-tunnel-into-the-azure-kubernetes-service-cluster)
-    - [Task 2: Deploy a service using the Kubernetes management dashboard](#task-2-deploy-a-service-using-the-kubernetes-management-dashboard)
-    - [Task 3: Deploy a service using kubectl](#task-3-deploy-a-service-using-kubectl)
-    - [Task 4: Deploy a service using a Helm chart](#task-4-deploy-a-service-using-a-helm-chart)
+    - [Task 3: Deploy a service (from an existing Docker image on ACR) using kubectl](#task-3-deploy-a-service-using-kubectl)
     - [Task 5: Test the application in a browser](#task-5-test-the-application-in-a-browser)
     - [Task 6: Configure Continuous Delivery to the Kubernetes Cluster](#task-6-configure-continuous-delivery-to-the-kubernetes-cluster)
     - [Task 7: Review Azure Monitor for Containers](#task-7-review-azure-monitor-for-containers)
   - [Exercise 4: Scale the application and test HA](#exercise-4-scale-the-application-and-test-ha)
-    - [Task 1: Increase service instances from the Kubernetes dashboard](#task-1-increase-service-instances-from-the-kubernetes-dashboard)
+    - [Task 1: Increase service instances using the CLI/or using the portal](#task-1-increase-service-instances-from-the-kubernetes-dashboard)
     - [Task 2: Increase service instances beyond available resources](#task-2-increase-service-instances-beyond-available-resources)
     - [Task 3: Restart containers and test HA](#task-3-restart-containers-and-test-ha)
     - [Task 4: Configure Cosmos DB Autoscale](#task-4-configure-cosmos-db-autoscale)
@@ -63,7 +53,6 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
     - [Task 3: Adjust CPU constraints to improve scale](#task-3-adjust-cpu-constraints-to-improve-scale)
     - [Task 4: Perform a rolling update](#task-4-perform-a-rolling-update)
     - [Task 5: Configure Kubernetes Ingress](#task-5-configure-kubernetes-ingress)
-    - [Task 6: Multi-region Load Balancing with Traffic Manager](#task-6-multi-region-load-balancing-with-traffic-manager)
   - [After the hands-on lab](#after-the-hands-on-lab)
 
 <!-- /TOC -->
@@ -75,6 +64,15 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 This hands-on lab is designed to guide you through the process of building and deploying Docker images to the Kubernetes platform hosted on Azure Kubernetes Services (AKS), in addition to learning how to work with dynamic service discovery, service scale-out, and high-availability.
 
 At the end of this lab, you will be better able to build and deploy containerized applications to Azure Kubernetes Service and perform common DevOps procedures.
+
+## Prerequisites
+
+The lab assumes some basic knowledge of Docker containers and Kubernetes. The following modules on Microsoft Learn would be heplful:
+- https://docs.microsoft.com/en-us/learn/modules/intro-to-docker-containers/
+- https://docs.microsoft.com/en-us/learn/modules/intro-to-containers/
+- https://docs.microsoft.com/en-us/learn/modules/build-and-store-container-images/
+- https://docs.microsoft.com/en-us/learn/modules/intro-to-kubernetes/
+
 
 ## Overview
 
