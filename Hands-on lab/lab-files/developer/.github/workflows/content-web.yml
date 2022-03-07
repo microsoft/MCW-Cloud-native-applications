@@ -17,9 +17,9 @@ on:
 env:
   imageRepository: 'content-web'
   resourceGroupName: 'fabmedical-[SUFFIX]'
-  clusterName: 'fabmedical-[SUFFIX]'
-  containerRegistryName: 'fabmedical[SUFFIX]'
-  containerRegistry: 'fabmedical[SUFFIX].azurecr.io'
+  clusterName: 'fabmedical-[SHORT_SUFFIX]'
+  containerRegistryName: 'fabmedical[SHORT_SUFFIX]'
+  containerRegistry: 'fabmedical[SHORT_SUFFIX].azurecr.io'
   dockerfilePath: './content-web'
   tag: '${{ github.run_id  }}'
 
@@ -53,21 +53,21 @@ jobs:
           ${{ env.containerRegistry }}/${{ env.imageRepository }}:${{ env.tag }}
           ${{ env.containerRegistry }}/${{ env.imageRepository }}:latest
 
-    - uses: Azure/aks-set-context@v1
-      with:
-        creds: '${{ secrets.AZURE_CREDENTIALS }}'
-        cluster-name: '${{ env.clusterName }}'
-        resource-group: '${{ env.resourceGroupName }}'
+    # - uses: Azure/aks-set-context@v1
+    #   with:
+    #     creds: '${{ secrets.AZURE_CREDENTIALS }}'
+    #     cluster-name: '${{ env.clusterName }}'
+    #     resource-group: '${{ env.resourceGroupName }}'
 
-    - name: Create ACR credentials secret
-      uses: azure/k8s-create-secret@v1
-      with:
-        container-registry-url: ${{ env.containerRegistry }}.azurecr.io
-        container-registry-username: ${{ secrets.ACR_USERNAME }}
-        container-registry-password: ${{ secrets.ACR_PASSWORD }}
-        secret-name: ingress-demo-secret
-        namespace: ingress-demo
-        arguments: --force true
+    # - name: Create ACR credentials secret
+    #   uses: azure/k8s-create-secret@v1
+    #   with:
+    #     container-registry-url: ${{ env.containerRegistry }}.azurecr.io
+    #     container-registry-username: ${{ secrets.ACR_USERNAME }}
+    #     container-registry-password: ${{ secrets.ACR_PASSWORD }}
+    #     secret-name: ingress-demo-secret
+    #     namespace: ingress-demo
+    #     arguments: --force true
         
     # - name: Deploy to AKS
     #   uses: azure/k8s-deploy@v1
