@@ -1003,7 +1003,7 @@ This task will edit the web application source code to add Application Insights 
 2. From an Azure Cloud Shell terminal that does **NOT** have an active SSH session to the build agent VM update your Fabmedical repository files by pulling the latest changes from the git repository and then updating deployment YAML files.
 
     ```bash
-    cd ~/Fabmedical/content-web
+    cd ~/Fabmedical
     kubectl get deployment api -n ingress-demo -o=yaml > api.deployment.yaml
     kubectl get deployment web -n ingress-demo -o=yaml > web.deployment.yaml
     git pull
@@ -1014,6 +1014,7 @@ This task will edit the web application source code to add Application Insights 
 3. Install support for Application Insights.
 
     ```bash
+    cd ~/Fabmedical/content-web
     npm install applicationinsights --save
     ```
 
