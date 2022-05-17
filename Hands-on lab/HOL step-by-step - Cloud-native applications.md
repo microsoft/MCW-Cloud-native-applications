@@ -1004,8 +1004,8 @@ This task will edit the web application source code to add Application Insights 
 
     ```bash
     cd ~/Fabmedical
-    kubectl get deployment api -n ingress-demo -o=yaml > api.deployment.yaml
-    kubectl get deployment web -n ingress-demo -o=yaml > web.deployment.yaml
+    kubectl get deployment api -n ingress-demo -o=yaml > api.deployment.yml
+    kubectl get deployment web -n ingress-demo -o=yaml > web.deployment.yml
     git pull
     ```
 
