@@ -1,7 +1,7 @@
-FROM node:16.5.0-alpine AS base
+FROM node:18.3-alpine AS base
 WORKDIR /usr/src/app
 
-FROM node:argon AS build
+FROM node:18.3-alpine AS build
 WORKDIR /usr/src/app
 
 # Install app dependencies
