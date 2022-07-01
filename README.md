@@ -1,9 +1,6 @@
-# Retirement notice
-This workshop will be retired effective June 30, 2022. At that time the repository will be archived, and the materials will not be maintained.
-
-For questions or concerns regarding the MCW library, email us at [AskMCW](mailto:AskMCW@microsoft.com). Please remember to include the title of the workshop in your email.
-
 # Cloud-native applications
+
+## This workshop is archived and no longer being maintained.  Content is read-only.
 
 Fabrikam Medical Conferences provides conference web site services, tailored to the medical community. Their business has grown and the management of many instances of the code base and change cycle per tenant has gotten out of control.
 
